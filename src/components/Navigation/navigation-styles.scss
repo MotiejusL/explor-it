@@ -1,0 +1,90 @@
+@import '../../styles/shared-styles.scss';
+
+.nav-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.35%;
+  border-top-right-radius: 30px;
+  background: linear-gradient(to right, #ece9e6, #ffffff);
+  border-right: 3px solid rgb(225,225,225);
+  transition: width 0.5s, background 0.5s;
+  &:hover {
+    width: 12.5%;
+    nav {
+      &:after {
+        left: calc(100% - 0.2px;)
+      }
+    }
+    .navigation-list {
+      a {
+        transition: opacity 1.2s;
+        opacity: 1;
+        .navigation-list-item {
+          transition: opacity 1.2s;
+          opacity: 1;
+        }
+      }
+    }
+  }
+  nav {
+    position: relative;
+    height: 100%;
+    padding: 30px 0;
+    .navigation-list {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      a {
+        border-bottom: 1px solid rgb(205,205,205);
+        opacity: 0;
+        transition: opacity 0.2s;
+        &:last-of-type {
+          border-bottom: none;
+        }
+        .navigation-list-item {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 70px;
+          max-height: 10vw;
+          width: 100%;
+          opacity: 0;
+          transition: opacity 0.2s;
+          text-align: center;
+          font-family: $textFontFamily;
+          font-size: 1.5vw;
+          color: rgb(76,76,76);
+          font-weight: bold;
+          &:hover {
+            color: rgba(0,0,0,1);
+          }
+        }
+      }
+    }
+    &:after, &:before {
+      left: calc(100% - 0.2px);
+      top: calc(50% - 30px);
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+    }
+    &:after {
+      border-color: transparent;
+      border-left-color: #ffffff;
+      border-width: 14px;
+      margin-top: -14px;
+      transition: border-left-color 0.5s, left 0.5s;
+    }
+    &:before {
+      border-color: transparent;
+      border-left-color: rgb(225,225,225);
+      border-width: 18px;
+      margin-top: -18px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@import '../../styles/shared-styles.scss';
+
+.home-countries-container {
+  width: 70%;
+  margin: auto;
+  margin: 30px auto 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
