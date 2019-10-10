@@ -4,9 +4,12 @@ $textFontFamily: 'Work Sans', sans-serif;
 $headers-color: rgb(56,56,56);
 $text-color: rgb(96,96,96);
 $text-headers-color: rgb(24,24,24);
+$text-lower-color: rgb(148,148,148);
+$success-color: rgb(107,142,35);
+$error-color: rgb(178,34,34);
 
 @mixin font-size($size, $base: 16) {
-  font-size: $size;
+  font-size: $size + px;
   font-size: ($size / $base) * 1rem;
 }
 
@@ -29,4 +32,74 @@ h1 {
 
 .input-with-auto-complete {
   position: relative;
+}
+
+.expand-form {
+  padding: 15px 0;
+  width: 30%;
+  @include font-size(16);
+  h4 {
+    @include font-size(14);
+    font-weight: bold;
+    text-align: center;
+  }
+  .success-submit {
+    color: $success-color;
+  }
+  .error-submit {
+    color: $error-color;
+  }
+  ul {
+    li {
+      padding: 10px 0;
+      label {
+        font-weight: bold;
+        color: $text-headers-color;
+      }
+      input {
+        padding-left: 5px;
+        margin-top: 5px;
+        display: block;
+        width: calc(100% - 7px);
+        height: 25px;
+        border: 1px solid rgb(96,96,96);
+        border-radius: 5px;
+        background-color: rgb(251,251,251);
+        &:focus {
+          border: 2px solid rgb(136,136,136);
+          height: 23px;
+        }
+      }
+      span {
+        color: $text-lower-color;
+        padding-left: 10px;
+        @include font-size(13);
+      }
+      button {
+
+      }
+    }
+  }
+}
+
+.main-button {
+  margin: 15px auto 15px auto;
+  display: block;
+  width: 100px;
+  border-radius: 5px;
+  border: 1px solid rgb(96,96,96);
+  background-color: rgb(225,225,225);
+  font-size: 15px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  color: $text-headers-color;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(186,186,186);
+  }
+  i {
+    font-size: 11px;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
 }

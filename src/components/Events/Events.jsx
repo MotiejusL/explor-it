@@ -83,7 +83,7 @@ class Events extends Component {
                 <input style={showAutoComplete ? { borderBottomLeftRadius: '0', borderBottomRightRadius: '0' } : { bordeBottomLeftRadius: '5px', borderBottomRightRadius: '5px' }} type="text" placeholder="Country name..." autoComplete="off" name="inputText" value={inputText} onChange={this.handleChange} onKeyDown={this.handleSearch} onClick={this.setShowAutoCompleteForElements} />
                 <AutoComplete allItems={countryNames} inputText={inputText} setShowAutoComplete={this.setShowAutoComplete} onElementClick={this.handleSearch} show={showAutoComplete} />
               </div>
-              <button type="button" onClick={this.handleSearch}>
+              <button className="main-button" type="button" onClick={this.handleSearch}>
               Search
                 <i className="fas fa-search"> </i>
               </button>
