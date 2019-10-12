@@ -6,7 +6,7 @@
   max-height: 200px;
   position: relative;
   z-index: 1;
-  transition: transform 0.5s;
+  transition: transform 0.5s, box-shadow 0.5s;
   border-radius: 5px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.4),
               0 0 40px rgba(0,0,0,0.1) inset;
@@ -18,6 +18,13 @@
       background: rgba(0,0,0,0.15);
     }
   }
+  @media only screen and (max-width: 1024px) {
+    flex-basis: calc((100% / 3) - 0.5%);
+  }
+  @media only screen and (max-width: 426px) {
+    flex-basis: calc(100% - 0.5%);
+    margin: 3px 0;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -26,15 +33,15 @@
   }
   h2 {
     position: absolute;
-    top: 0;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     color: rgb(255,255,255);
-    @include font-size(40);
+    @include font-size(42);
     text-shadow: 1px 2px 5px rgb(0,0,0);
     font-family: $textHeadersFontFamily;
     z-index: 1;
+    backface-visibility: hidden;
   }
   .destination-card-darken {
     position: absolute;

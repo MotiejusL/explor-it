@@ -12,7 +12,14 @@ class Expand extends Component {
     super();
     this.state = {
       selectedItem: '',
+      destinations: [],
     };
+  }
+
+  async componentDidMount() {
+    const destinationsResponse = await fetch('https://travel-rest.herokuapp.com/rest/destinations');
+    const destinations = await destinationsResponse.json();
+    this.setState({ destinations: destinations.countries });
   }
 
   handleChange = (element) => {
@@ -24,7 +31,7 @@ class Expand extends Component {
   }
 
   render() {
-    const { selectedItem } = this.state;
+    const { selectedItem, destinations } = this.state;
     const SelectedFormComponent = components[selectedItem.toLowerCase()];
     return (
       <div className="pages-main-container">
@@ -36,7 +43,7 @@ class Expand extends Component {
             <option value="Event">Event</option>
             <option value="Country">Country</option>
           </select>
-          {(selectedItem !== '' && selectedItem !== 'Select...') && <SelectedFormComponent />}
+          {(selectedItem !== '' && selectedItem !== 'Select...' && destinations !== []) && <SelectedFormComponent destinations={destinations} />}
         </div>
       </div>
     );

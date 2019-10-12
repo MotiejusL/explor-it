@@ -29,7 +29,7 @@ class DestinationCard extends Component {
     return (
       <div className="destination-card">
         <Link to={`/destinations/${country.name}`}>
-          <img src={isLoading ? defaultImg : countryPhotos[0].urls.small} alt={country.name} />
+          <img src={isLoading || countryPhotos[0] === undefined ? defaultImg : countryPhotos[0].urls.small} alt={country.name} />
           <h2>{isLoading ? 'Loading...' : country.name}</h2>
           <div className="destination-card-darken"> </div>
         </Link>

@@ -19,35 +19,40 @@ class EventCard extends PureComponent {
 
   render() {
     const { image } = this.state;
-    const { event } = this.props;
+    const { event, handleEventClick } = this.props;
     const {
       name, date, time, city, description,
     } = event;
     return (
-      <div className="event-card">
-        <img src={image !== null ? image.urls.small : defaultImg} alt={event.name} />
-        <ul>
-          <li>
-          Name
-            <span>{name}</span>
-          </li>
-          <li>
-          Date
-            <span>{date}</span>
-          </li>
-          <li>
-          Time
-            <span>{time}</span>
-          </li>
-          <li>
-          City
-            <span>{city}</span>
-          </li>
-          <li>
-          Description
-            <span>{description}</span>
-          </li>
-        </ul>
+      <div className="event-card-wrapper" onClick={() => handleEventClick(image, [name, date, time, city, description])}>
+        <div className="event-card">
+          <img src={image !== null && image !== undefined ? image.urls.small : defaultImg} alt={event.name} />
+          <ul>
+            <li>
+            Name
+              <span>{name}</span>
+            </li>
+            <li>
+            Date
+              <span>{date}</span>
+            </li>
+            <li>
+            Time
+              <span>{time}</span>
+            </li>
+            <li>
+            City
+              <span>{city}</span>
+            </li>
+            <li>
+            Description
+              <span>{description}</span>
+            </li>
+          </ul>
+        </div>
+        <div className="event-card-lighten-bottom">
+          <span>Read more...</span>
+        </div>
       </div>
     );
   }
@@ -61,10 +66,12 @@ EventCard.propTypes = {
     city: PropTypes.string,
     description: PropTypes.string,
   }),
+  handleEventClick: PropTypes.func,
 };
 
 EventCard.defaultProps = {
   event: null,
+  handleEventClick: null,
 };
 
 export default EventCard;

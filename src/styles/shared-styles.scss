@@ -19,6 +19,9 @@ body {
 
 .pages-main-container {
   margin: 50px 0;
+  @media only screen and (max-width: 426px) {
+    margin: 25px 0;
+  }
 }
 
 h1 {
@@ -28,6 +31,9 @@ h1 {
   text-align: center;
   margin: 15px 0;
   color: $headers-color;
+  @media only screen and (max-width: 426px) {
+    @include font-size(35);
+  }
 }
 
 .input-with-auto-complete {
@@ -36,8 +42,23 @@ h1 {
 
 .expand-form {
   padding: 15px 0;
-  width: 30%;
+  width: 20%;
   @include font-size(16);
+  @media only screen and (max-width: 1536px) {
+    width: 30%;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 40%;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 50%;
+  }
+  @media only screen and (max-width: 426px) {
+    width: 85%;
+  }
+  @media only screen and (max-width: 375px) {
+    width: 95%;
+  }
   h4 {
     @include font-size(14);
     font-weight: bold;
@@ -56,27 +77,39 @@ h1 {
         font-weight: bold;
         color: $text-headers-color;
       }
-      input {
+      input, textarea, select {
         padding-left: 5px;
-        margin-top: 5px;
         display: block;
         width: calc(100% - 7px);
         height: 25px;
         border: 1px solid rgb(96,96,96);
         border-radius: 5px;
         background-color: rgb(251,251,251);
-        &:focus {
-          border: 2px solid rgb(136,136,136);
+        margin-top: 4px;
+        &:focus:not(textarea):not(select)  {
           height: 23px;
         }
+        &:focus:not(input):not(select) {
+          height: 68px;
+        }
+        &:focus {
+          border: 2px solid rgb(168,168,168);
+        }
+      }
+      select {
+        width: 100%;
+      }
+      textarea {
+        padding-top: 5px;
+        max-width: calc(100% - 9px);
+        min-width: calc(100% - 9px);
+        height: 70px;
+        min-height: 20px;
       }
       span {
         color: $text-lower-color;
         padding-left: 10px;
         @include font-size(13);
-      }
-      button {
-
       }
     }
   }
@@ -85,7 +118,7 @@ h1 {
 .main-button {
   margin: 15px auto 15px auto;
   display: block;
-  width: 100px;
+  padding: 0 10px;
   border-radius: 5px;
   border: 1px solid rgb(96,96,96);
   background-color: rgb(225,225,225);

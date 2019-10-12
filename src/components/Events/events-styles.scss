@@ -10,9 +10,22 @@
     margin-top: 0;
   }
   .events-search {
-    width: 30%;
+    width: 18%;
+    @media only screen and (max-width: 1536px) {
+      width: 30%;
+    }
+    @media only screen and (max-width: 1024px) {
+      width: 35%;
+    }
+    @media only screen and (max-width: 768px) {
+      width: 45%;
+    }
+    @media only screen and (max-width: 426px) {
+      width: 70%;
+    }
     input {
       width: 100%;
+      max-width: 100%;
       height: 25px;
       border-radius: 5px;
       border: 1px solid rgb(96,96,96);
@@ -27,8 +40,14 @@
   }
   .events-all-events {
     margin-top: 25px;
-    width: 70%;
+    width: 50%;
     display: flex;
     flex-wrap: wrap;
+    @media only screen and (max-width: 1536px) {
+      width: 70%;
+    }
+    @media only screen and (max-width: 768px) {
+      width: 95%;
+    }
   }
 }

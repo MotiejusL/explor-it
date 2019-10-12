@@ -1,6 +1,19 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 class EventForm extends PureComponent {
+  static validateInput(arrayToCheck) {
+    let invalidInput = false;
+    const dateRegex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+    const timeRegex = /^((([0-1]?[0-9]|2[0-3]):[0-5][0-9])|(24:00))$/;
+    arrayToCheck.forEach((input, index) => {
+      if (input === '' || (index === 1 && !dateRegex.test(input)) || (index === 2 && !timeRegex.test(input))) {
+        invalidInput = true;
+      }
+    });
+    return invalidInput;
+  }
+
   constructor() {
     super();
     this.state = {
@@ -15,6 +28,14 @@ class EventForm extends PureComponent {
     };
   }
 
+  getCountryOptions() {
+    const { destinations } = this.props;
+    const options = destinations.map((dest) => {
+      return <option key={dest.name} value={dest.name}>{dest.name}</option>;
+    });
+    return options;
+  }
+
   handleChange = (element) => {
     const { target } = element;
     const { name, value } = target;
@@ -27,45 +48,51 @@ class EventForm extends PureComponent {
     const {
       eventName, eventDate, eventTime, eventCity, eventDescription, eventCountryName,
     } = this.state;
-    const eventInsertResponse = await fetch(`https://travel-rest.herokuapp.com/rest/destinations/${eventCountryName}/events`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: eventName,
-        date: eventDate,
-        time: eventTime,
-        city: eventCity,
-        description: eventDescription,
-        countryName: eventCountryName,
-      }),
-    });
-    this.setState({
-      eventName: '',
-      eventDate: '',
-      eventTime: '',
-      eventCity: '',
-      eventDescription: '',
-      eventCountryName: '',
-    });
-    if (eventInsertResponse.status === 201) {
-      this.setState({
-        responseMessage: 'Thank you for helping us to expand our database!',
-        gotError: false,
+    if (!EventForm.validateInput([eventName, eventDate, eventTime,
+      eventCity, eventDescription, eventCountryName])) {
+      const eventInsertResponse = await fetch(`https://travel-rest.herokuapp.com/rest/destinations/${eventCountryName}/events`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: eventName,
+          date: eventDate,
+          time: eventTime,
+          city: eventCity,
+          description: eventDescription,
+          countryName: eventCountryName,
+        }),
       });
+      this.setState({
+        eventName: '',
+        eventDate: '',
+        eventTime: '',
+        eventCity: '',
+        eventDescription: '',
+        eventCountryName: '',
+      });
+      if (eventInsertResponse.status === 201) {
+        this.setState({
+          responseMessage: 'Thank you for helping us to expand our database!',
+          gotError: false,
+        });
+      } else {
+        this.setState({
+          responseMessage: 'Sorry, something went wrong sending your data',
+          gotError: true,
+        });
+      }
     } else {
-      this.setState({
-        responseMessage: 'Sorry, something went wrong sending your data',
-        gotError: true,
-      });
+      this.setState({ responseMessage: 'Bad date and time format or not all the fields filled!', gotError: true });
     }
   }
 
   render() {
     const {
-      eventName, eventDate, eventTime, eventCity, eventDescription, eventCountryName, responseMessage, gotError,
+      eventName, eventDate, eventTime, eventCity, eventDescription,
+      eventCountryName, responseMessage, gotError,
     } = this.state;
     return (
       <div className="expand-form">
@@ -101,13 +128,16 @@ class EventForm extends PureComponent {
             <li>
               <label htmlFor="description">
                 Event description:
-                <input type="text" id="description" name="eventDescription" value={eventDescription} onChange={this.handleChange} />
+                <textarea id="description" name="eventDescription" value={eventDescription} onChange={this.handleChange}> </textarea>
               </label>
             </li>
             <li>
               <label htmlFor="country">
                 Event country:
-                <input type="text" id="country" name="eventCountryName" value={eventCountryName} onChange={this.handleChange} />
+                <select id="country" name="eventCountryName" value={eventCountryName} onChange={this.handleChange}>
+                  <option>Select...</option>
+                  {this.getCountryOptions()}
+                </select>
               </label>
             </li>
           </ul>
@@ -117,5 +147,13 @@ class EventForm extends PureComponent {
     );
   }
 }
+
+EventForm.propTypes = {
+  destinations: PropTypes.arrayOf(PropTypes.object),
+};
+
+EventForm.defaultProps = {
+  destinations: null,
+};
 
 export default EventForm;

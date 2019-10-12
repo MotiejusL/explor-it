@@ -7,14 +7,78 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.9);
-  z-index: 2;
+  z-index: 15;
   display: none;
+  flex-direction: column;
+  align-items: center;
+  font-family: $textFontFamily;
   .modal-image-inner {
     width: 70%;
     height: auto;
     max-height: 80%;
     margin: auto;
+    border-radius: 5px;
     object-fit:cover;
+    @media only screen and (max-width: 426px) {
+      width: 95%;
+    }
+  }
+  .small {
+    width: 40%;
+    max-height: 55%;
+    min-height: 40%;
+    margin: 100px auto 25px auto;
+    @media only screen and (max-width: 1536px) {
+      width: 60%;
+      margin-top: 50px;
+    }
+    @media only screen and (max-width: 768px) {
+      width: 80%;
+    }
+    @media only screen and (max-width: 426px) {
+      width: 95%;
+      max-height: 40%;
+      min-height: 15%;
+    }
+  }
+  .modal-info {
+    height: 45%;
+    max-height: 60%;
+    @media only screen and (max-width: 426px) {
+      height: 60%;
+      max-height: 85%;
+    }
+    ul {
+      text-align: center;
+      width: 40%;
+      margin: 0 auto 30px auto;
+      font-size: 17px;
+      line-height: 18px;
+      @media only screen and (max-width: 1536px) {
+        width: 60%;
+      }
+      @media only screen and (max-width: 768px) {
+        width: 80%;
+      }
+      @media only screen and (max-width: 426px) {
+        width: 95%;
+        font-size: 15px;
+      }
+      li {
+        color: rgb(235,235,235);
+        &:first-of-type {
+          font-size: 20px;
+          font-weight: bold;
+          color: rgb(245,245,245);
+          padding-bottom: 8px;
+        }
+        &:last-of-type {
+          padding-top: 10px;
+          text-align: left;
+          line-height: 21px;
+        }
+      }
+    }
   }
   button {
     position: fixed;
@@ -22,6 +86,9 @@
     right: 15px;
     background: none;
     border: none;
+    @media only screen and (max-width: 426px) {
+      right: 5px;
+    }
     i {
       font-size: 30px;
       color: rgb(255,255,255);
@@ -29,6 +96,9 @@
       cursor: pointer;
       &:hover {
         color: rgba(255,255,255,0.4);
+      }
+      @media only screen and (max-width: 426px) {
+        font-size: 22px;
       }
     }
   }

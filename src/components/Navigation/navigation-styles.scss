@@ -8,8 +8,9 @@
   width: 0.35%;
   border-top-right-radius: 30px;
   background: linear-gradient(to right, #ece9e6, #ffffff);
-  border-right: 3px solid rgb(225,225,225);
+  border-right: 3px solid rgb(205,205,205);
   transition: width 0.5s, background 0.5s;
+  z-index: 10;
   &:hover {
     width: 12.5%;
     nav {
@@ -48,8 +49,8 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 70px;
-          max-height: 10vw;
+          height: 120px;
+          max-height: 12vw;
           width: 100%;
           opacity: 0;
           transition: opacity 0.2s;
@@ -60,6 +61,10 @@
           font-weight: bold;
           &:hover {
             color: rgba(0,0,0,1);
+          }
+          @media only screen and (max-width: 1536px) {
+            height: 70px;
+            max-height: 10vw;
           }
         }
       }
@@ -82,7 +87,7 @@
     }
     &:before {
       border-color: transparent;
-      border-left-color: rgb(225,225,225);
+      border-left-color: rgb(205,205,205);
       border-width: 18px;
       margin-top: -18px;
     }
