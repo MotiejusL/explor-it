@@ -48,10 +48,9 @@ class EventCard extends PureComponent {
             Description
               <span>{description}</span>
             </li>
+            <div className="event-card-lighten-bottom"> </div>
           </ul>
-        </div>
-        <div className="event-card-lighten-bottom">
-          <span>Read more...</span>
+          <span className="event-card-lighten-ontop">Read more...</span>
         </div>
       </div>
     );
