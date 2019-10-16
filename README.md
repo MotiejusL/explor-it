@@ -7,4 +7,4 @@ Explorit is a project that lets you to explore various countries to get informat
 - Search for events
 - Get information about events
 - Add a country
-- Add and event
+- Add an event
