@@ -70,7 +70,7 @@ class Navigation extends Component {
               <li style={this.setLinksOpacity()} className="navigation-list-item">Events</li>
             </Link>
             <Link to="/expand" style={this.setLinksOpacity()} onClick={this.handleClick}>
-              <li style={this.setLinksOpacity()} iclassName="navigation-list-item">Expand</li>
+              <li style={this.setLinksOpacity()} className="navigation-list-item">Expand</li>
             </Link>
           </ul>
         </nav>
