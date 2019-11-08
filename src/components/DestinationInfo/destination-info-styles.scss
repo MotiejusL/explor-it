@@ -1,19 +1,35 @@
 @import '../../styles/shared-styles.scss';
 
 .country-info-wrapper {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  @media only screen and (max-width: 1536px) {
+    width: 80%;
+  }
+  @media only screen and (max-width: 1100px) {
+    width: 90%;
+  }
+  @media only screen and (max-width: 1000px) {
+    width: 80%;
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 600px) {
+    width: 95%;
+  }
+  h1 {
+    width: 100%;
+  }
   .country-info-container {
-    width: 40%;
-    margin: 50px auto 25px auto;
-    padding: 10px;
+    flex-basis: 45%;
+    margin: 25px 0;
+    padding: 0 35px;
     font-family: $textFontFamily;
-    @media only screen and (max-width: 1536px) {
-      width: 50%;
-    }
-    @media only screen and (max-width: 1024px) {
-      width: 85%;
-    }
-    @media only screen and (max-width: 768px) {
-      width: 90%;
+    order: 2;
+    @media only screen and (max-width: 1000px) {
+      order: 1;
+      padding: 0 15px;
     }
     ul {
       li {
@@ -33,20 +49,19 @@
   }
 
   .country-photos-container {
-    width: 50%;
+    flex-basis: 55%;
     display: flex;
     flex-wrap: wrap;
-    margin: 25px auto 25px auto;
-    @media only screen and (max-width: 1536px) {
-      width: 60%;
-    }
-    @media only screen and (max-width: 1024px) {
-      width: 95%;
+    margin: 25px 0;
+    order: 1;
+    align-self: center;
+    @media only screen and (max-width: 1000px) {
+      order: 2;
     }
     img {
       width: calc((100% / 3) - 0.5%);
       margin: 0.25%;
-      max-height: 200px;
+      max-height: 160px;
       object-fit: cover;
       border-radius: 5px;
       cursor: pointer;
@@ -69,14 +84,18 @@
     }
   }
 
-  a {
+  button {
     display: block;
+    border: none;
+    background: none;
     max-width: 150px;
     margin: 25px auto 50px auto;
     font-size: 45px;
     color: rgb(86,86,86);
     text-align: center;
     transition: color 0.2s;
+    cursor: pointer;
+    order: 3;
     &:hover {
       color: $headers-color;
     }

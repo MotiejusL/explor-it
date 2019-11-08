@@ -12,7 +12,7 @@
     margin-bottom: 15px;
     @include font-size(18);
     color: $text-color;
-    padding: 0 15px;
+    padding: 0 35px;
   }
   select {
     border-radius: 5px;
@@ -35,6 +35,72 @@
     }
     @media only screen and (max-width: 375px) {
       width: 90%;
+    }
+  }
+  .choose-country {
+    font-weight: bold;
+    @include font-size(16);
+  }
+  .form-cards-wrapper {
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    @media only screen and (max-width: 1700px) {
+      width: 60%;
+    }
+    @media only screen and (max-width: 1300px) {
+      width: 80%;
+    }
+    @media only screen and (max-width: 950px) {
+      width: 90%;
+    }
+    @media only screen and (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    .expand-page-form {
+      flex-basis: 48%;
+      @media only screen and (max-width: 700px) {
+        width: 75%;
+      }
+      @media only screen and (max-width: 500px) {
+        width: 90%;
+      }
+    }
+    .expand-page-cards {
+      flex-basis: 48%;
+      margin: 25px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      @media only screen and (max-width: 700px) {
+        width: 90%;
+      }
+      .destination-card {
+        flex-basis: calc((100% / 2) - 1%);
+        max-height: 150px;
+        margin: 0.5%;
+        @media only screen and (max-width: 768px) {
+          flex-basis: calc(100% - 1%);
+          max-height: 120px;
+        }
+      }
+      .event-card-wrapper {
+        flex-basis: calc((100% / 2) - 1% - 2px);
+        margin: 0.5%;
+        @media only screen and (max-width: 768px) {
+          flex-basis: calc(100% - 1% - 2px);
+        }
+        .event-card {
+          img {
+            height: 100px;
+          }
+          ul {
+            height: 132px;
+          }
+        }
+      }
     }
   }
 }

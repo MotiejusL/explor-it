@@ -22,7 +22,6 @@ class EventForm extends PureComponent {
       eventTime: '',
       eventCity: '',
       eventDescription: '',
-      eventCountryName: '',
       responseMessage: '',
       gotError: false,
     };
@@ -48,6 +47,7 @@ class EventForm extends PureComponent {
     const {
       eventName, eventDate, eventTime, eventCity, eventDescription, eventCountryName,
     } = this.state;
+    const { selectedCountry } = this.props;
     if (!EventForm.validateInput([eventName, eventDate, eventTime,
       eventCity, eventDescription, eventCountryName])) {
       const eventInsertResponse = await fetch(`https://travel-rest.herokuapp.com/rest/destinations/${eventCountryName}/events`, {
@@ -62,7 +62,7 @@ class EventForm extends PureComponent {
           time: eventTime,
           city: eventCity,
           description: eventDescription,
-          countryName: eventCountryName,
+          countryName: selectedCountry,
         }),
       });
       this.setState({
@@ -92,13 +92,23 @@ class EventForm extends PureComponent {
   render() {
     const {
       eventName, eventDate, eventTime, eventCity, eventDescription,
-      eventCountryName, responseMessage, gotError,
+      responseMessage, gotError,
     } = this.state;
+    const { handleCountryChange, selectedCountry } = this.props;
     return (
       <div className="expand-form">
         {responseMessage !== '' && gotError !== true ? <h4 className="success-submit">{responseMessage}</h4> : <h4 className="error-submit">{responseMessage}</h4>}
         <form>
           <ul>
+            <li>
+              <label htmlFor="country">
+                Event country:
+                <select id="country" name="selectedCountry" value={selectedCountry} onChange={handleCountryChange}>
+                  <option>Select...</option>
+                  {this.getCountryOptions()}
+                </select>
+              </label>
+            </li>
             <li>
               <label htmlFor="name">
                 Event name:
@@ -131,15 +141,6 @@ class EventForm extends PureComponent {
                 <textarea id="description" name="eventDescription" value={eventDescription} onChange={this.handleChange}> </textarea>
               </label>
             </li>
-            <li>
-              <label htmlFor="country">
-                Event country:
-                <select id="country" name="eventCountryName" value={eventCountryName} onChange={this.handleChange}>
-                  <option>Select...</option>
-                  {this.getCountryOptions()}
-                </select>
-              </label>
-            </li>
           </ul>
           <button className="main-button" type="button" onClick={this.handleSubmit}>Confirm</button>
         </form>
@@ -150,10 +151,14 @@ class EventForm extends PureComponent {
 
 EventForm.propTypes = {
   destinations: PropTypes.arrayOf(PropTypes.object),
+  selectedCountry: PropTypes.string,
+  handleCountryChange: PropTypes.func,
 };
 
 EventForm.defaultProps = {
   destinations: null,
+  selectedCountry: '',
+  handleCountryChange: null,
 };
 
 export default EventForm;

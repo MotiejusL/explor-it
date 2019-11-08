@@ -14,7 +14,7 @@ class Events extends Component {
       countries: [],
       showAutoComplete: false,
       eventInModal: null,
-      imageInModal: null,
+      imgInModal: null,
       displayModal: false,
     };
   }
