@@ -1,14 +1,14 @@
 @import '../../styles/shared-styles.scss';
 
 header {
-  height: calc(24.55vw);
+  height: 24.55vw;
   background: url('../../images/background-3.jpg');
   background-size: cover;
   box-shadow: 0 1px 4px 0 rgba(0,0,0,0.75);
   background-position: center;
   display: flex;
-  @media only screen and (max-width: 426px) {
-    height: calc(33vh);
+  @media only screen and (max-width: 500px) {
+    height: 30vw;
   }
   h1 {
     display: block;
